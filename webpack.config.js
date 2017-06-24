@@ -1,14 +1,15 @@
-var config = {
+var config;
+config = {
     entry: './index.js',
 
     output: {
-        path:'/',
+        path: '/',
         filename: 'bundle.js',
     },
 
     devServer: {
         inline: true,
-        port: 8080
+        port: 3000
     },
 
     module: {
@@ -18,9 +19,24 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
 
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }
+
+
         ]
-    }
-}
+    }]
+}};
 
 module.exports = config;
